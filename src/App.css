@@ -46,7 +46,7 @@ swiper-container {
   }
 
   .header {
-    background-image: url(rate\src\images\darkBackground.png);
+    background-image: url(src\images\darkBackground.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
