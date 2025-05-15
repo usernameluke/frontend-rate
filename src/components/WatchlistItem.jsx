@@ -19,7 +19,7 @@ export function WatchlistItem({ specificId, type, id }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5005/watchlist/${id}`)
+      .get(`${import.meta.env.VITE_API_URL}/watchlist/${id}`)
       .then((response) => {
         const data = response.data;
         setStatus(data.status);
@@ -38,7 +38,7 @@ export function WatchlistItem({ specificId, type, id }) {
     };
 
     axios
-      .put(`http://localhost:5005/watchlist/${id}`, updatedData)
+      .put(`${import.meta.env.VITE_API_URL}/watchlist/${id}`, updatedData)
       .then(() => {
         console.log("Status updated successfully");
         setWatchlistData(updatedData);
@@ -64,7 +64,7 @@ export function WatchlistItem({ specificId, type, id }) {
   };
 
   const deleteItem = () => {
-    axios.delete(`http://localhost:5005/watchlist/${id}`).then(() => {
+    axios.delete(`${import.meta.env.VITE_API_URL}/watchlist/${id}`).then(() => {
       console.log(`Deleteditem with ID: ${id}`);
       window.location.reload();
     });

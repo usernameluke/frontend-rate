@@ -4,7 +4,7 @@ import { WatchlistItem } from "../components/WatchlistItem";
 
 export function WantToWatch() {
   const [watchlist, setWatchlist] = useState([]);
-  const API_URL = "http://localhost:5005";
+  const API_URL = `${import.meta.env.VITE_API_URL}`;
 
   const getWatchlist = () => {
     axios.get(`${API_URL}/watchlist`)
