@@ -164,14 +164,13 @@ swiper-container {
     margin: 20px 0;
   }
 
-  .modal-icon{
+  .modal-icon {
     margin-right: 10px;
   }
 
-  .modal-circle{
+  .modal-circle {
     border: 1px solid white;
     border-radius: 10000px;
-
   }
 
   .modal-footer {
@@ -262,24 +261,34 @@ swiper-container {
     margin-left: 10px;
   }
 
-  .watchlist-status{
+  .watchlist-status {
     text-align: start;
   }
 
-  .watchlist-buttons{
+  .watchlist-buttons {
     display: flex;
     flex-direction: column;
     margin-right: 10px;
   }
 
-  .watchlist-btn{
+  .watchlist-btn {
     margin: 10px;
   }
 
-  .add-watchlist-btn{
+  .add-watchlist-btn {
     background-color: rgba(209, 45, 53, 1);
     border-radius: 10000px;
     padding: 10px;
+  }
+
+  .genre-dropdown {
+    max-height: 100px;
+    overflow-y: auto;
+    outline: none;
+  }
+
+  .rating-dropdown{
+    outline: none;
   }
 
   .poster {
