@@ -124,7 +124,7 @@ export function WantToWatch() {
           <select
             name="genre"
             id="genre"
-            className="genre-dropdown"
+            className="genre-dropdown text-xs"
             onChange={(e) => setFilterGenre(e.target.value)}
           >
             <option value="All" className="text-black text-xs">
@@ -140,7 +140,7 @@ export function WantToWatch() {
           <select
             name="rating"
             id="Rating"
-            className="rating-dropwdown"
+            className="rating-dropwdown text-xs"
             onChange={(e) => setFilterRating(e.target.value)}
           >
             <option className="text-black text-xs" value="All">
