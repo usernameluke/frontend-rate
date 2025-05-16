@@ -4,20 +4,22 @@ import { WatchlistItem } from "../components/WatchlistItem";
 
 export function WantToWatch() {
   const [watchlist, setWatchlist] = useState([]);
+
+  const [filterStatus, setFilterStatus] = useState("All");
+
+  const [filterType, setFilterType] = useState("All");
+
   const API_URL = `${import.meta.env.VITE_API_URL}`;
 
   const getWatchlist = () => {
-    axios.get(`${API_URL}/watchlist`)
-    .then ((response) => {
+    axios.get(`${API_URL}/watchlist`).then((response) => {
       setWatchlist(response.data);
-    })
-  }
+    });
+  };
 
-  useEffect( () => {
+  useEffect(() => {
     getWatchlist();
-
-  }, [])
-
+  }, []);
 
   return (
     <div className="watchlist-page">
@@ -26,24 +28,31 @@ export function WantToWatch() {
           id="watchlist"
           name="watchlist"
           className="watchlist text-1xl cinzel-500 text-white"
+          onChange={(e) => setFilterStatus(e.target.value)}
         >
           <option
-            value="wanttowatch"
+            value="All"
+            className="text-1xl cinzel-500 text-black"
+          >
+            All
+          </option>
+          <option
+            value="To Watch"
             className="text-1xl cinzel-500 text-black"
           >
             Want to Watch
           </option>
-          <option value="watching" className="text-1xl cinzel-500 text-black">
+          <option value="Watching" className="text-1xl cinzel-500 text-black">
             Watching
           </option>
-          <option value="watched" className="text-1xl cinzel-500 text-black">
+          <option value="Watched" className="text-1xl cinzel-500 text-black">
             Watched
           </option>
         </select>
         <nav className="watchlist-menu cinzel-400 text-white">
-          <a href="#all">All</a>
-          <a href="#movies">Movies</a>
-          <a href="#series">Series</a>
+          <a href="#all" onClick={() => setFilterType("All")}>All</a>
+          <a href="#movies" onClick={() => setFilterType("movie")}>Movies</a>
+          <a href="#series" onClick={() => setFilterType("tv")}>Series</a>
         </nav>
         <nav className="watchlist-menu cinzel-400 text-white">
           <a href="#all">Genre</a>
@@ -87,10 +96,13 @@ export function WantToWatch() {
           className="watchlist-main"
         >
           {watchlist.map((item) => {
-            
             return (
               <swiper-slide key={`watchlist-item-${item.id}`}>
-                <WatchlistItem specificId={item.source_id} type={item.type} id={item.id}/>
+                <WatchlistItem
+                  specificId={item.source_id}
+                  type={item.type}
+                  id={item.id}
+                />
               </swiper-slide>
             );
           })}
@@ -101,4 +113,4 @@ export function WantToWatch() {
       </footer>
     </div>
   );
-  }
+}
