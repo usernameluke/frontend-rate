@@ -127,11 +127,11 @@ export function WantToWatch() {
             className="genre-dropdown"
             onChange={(e) => setFilterGenre(e.target.value)}
           >
-            <option value="All" className="text-black">
+            <option value="All" className="text-black text-xs">
               All Genres
             </option>
             {genres.map((genre) => (
-              <option key={genre.id} value={genre.name} className="text-black">
+              <option key={genre.id} value={genre.name} className="text-black text-xs">
                 {genre.name}
               </option>
             ))}
@@ -143,16 +143,16 @@ export function WantToWatch() {
             className="rating-dropwdown"
             onChange={(e) => setFilterRating(e.target.value)}
           >
-            <option className="text-black" value="All">
+            <option className="text-black text-xs" value="All">
               All Ratings
             </option>
-            <option className="text-black" value="85-100">
+            <option className="text-black text-xs" value="85-100">
               85-100
             </option>
-            <option className="text-black" value="80-84">
+            <option className="text-black text-xs" value="80-84">
               80-84
             </option>
-            <option className="text-black" value="71-79">
+            <option className="text-black text-xs" value="71-79">
               71-79
             </option>
           </select>
