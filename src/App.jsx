@@ -5,12 +5,23 @@ import Movie from "./pages/Movie";
 import Show from "./pages/Show";
 import { Browse } from "./pages/Browse";
 import { WatchlistItem } from "./components/WatchlistItem";
+import darkBackground from "../src/images/darkBackground.png";
 
 function App() {
   return (
     <div className="app">
       <Navbar />
-      <header id="#" className="header">
+      <header
+        id="#"
+        className="header"
+        style={{
+          backgroundImage: `url(${darkBackground})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          height: "100vh",
+        }}
+      >
         <h1 className="text-white cinzel-500 text-5xl text-center welcome-title">
           Welcome to R8+ <hr />
         </h1>
@@ -20,19 +31,19 @@ function App() {
       </header>
       <main className="mainpage">
         <Routes>
-          <Route path="/wanttowatch" element={<WantToWatch/>} />
-          <Route path="/browse" element={<Browse/>} />
+          <Route path="/wanttowatch" element={<WantToWatch />} />
+          <Route path="/browse" element={<Browse />} />
           <Route path="/movie/:specificId" element={<Movie />} />
           <Route path="/show/:specificId" element={<Show />} />
-          <Route path="/watchlist/:id" element={<WatchlistItem/>}/>
+          <Route path="/watchlist/:id" element={<WatchlistItem />} />
         </Routes>
 
         <section id="browse">
-          <Browse/>
+          <Browse />
         </section>
 
         <section id="to-watch">
-          <WantToWatch/>
+          <WantToWatch />
         </section>
 
         <section id="custom-list">
