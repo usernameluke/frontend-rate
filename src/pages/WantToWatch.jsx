@@ -9,23 +9,88 @@ export function WantToWatch() {
 
   const [filterType, setFilterType] = useState("All");
 
+  const [filterGenre, setFilterGenre] = useState("All");
+
+  const [filterRating, setFilterRating] = useState("All");
+
   const API_URL = `${import.meta.env.VITE_API_URL}`;
 
-  const getWatchlist = () => {
-    axios.get(`${API_URL}/watchlist`).then((response) => {
-      setWatchlist(response.data);
-    });
+  const [genres, setGenres] = useState([]);
+
+  const fetchGenres = async () => {
+    try {
+      const movieGenresRes = await axios.get(
+        `https://api.themoviedb.org/3/genre/movie/list?api_key=6addbdd2457d4d8d9a03e850cef564d7`
+      );
+      const tvGenresRes = await axios.get(
+        `https://api.themoviedb.org/3/genre/tv/list?api_key=6addbdd2457d4d8d9a03e850cef564d7`
+      );
+
+      const allGenres = [
+        ...movieGenresRes.data.genres,
+        ...tvGenresRes.data.genres,
+      ];
+
+      const uniqueGenres = Array.from(
+        new Map(allGenres.map((genre) => [genre.name, genre])).values()
+      );
+
+      setGenres(uniqueGenres);
+    } catch (error) {
+      console.error("Error fetching genres", error);
+    }
+  };
+
+  const getWatchlist = async () => {
+    try {
+      const response = await axios.get(`${API_URL}/watchlist`);
+      const rawItems = response.data;
+
+      const enrichedItems = await Promise.all(
+        rawItems.map((item) => fetchTMDBDetails(item))
+      );
+
+      setWatchlist(enrichedItems);
+    } catch (error) {
+      console.error("Error loading watchlist or TMDB data", error);
+    }
   };
 
   useEffect(() => {
     getWatchlist();
+    fetchGenres();
   }, []);
 
   const filteredWatchlist = watchlist.filter((item) => {
     const statusMatch = filterStatus === "All" || item.status === filterStatus;
     const typeMatch = filterType === "All" || item.type === filterType;
-    return statusMatch && typeMatch;
-  })
+
+    const rating = item.vote_average || 0;
+    const ratingMatch =
+      filterRating === "All" ||
+      (filterRating === "85-100" && rating >= 8.5) ||
+      (filterRating === "80-84" && rating >= 8 && rating < 8.5) ||
+      (filterRating === "71-79" && rating >= 7.1 && rating < 8);
+
+    const genreMatch =
+      filterGenre === "All" || item.genres.some((g) => g.name === filterGenre);
+
+    return statusMatch && typeMatch && ratingMatch && genreMatch;
+  });
+
+  const fetchTMDBDetails = async (item) => {
+    const url =
+      item.type === "movie"
+        ? `https://api.themoviedb.org/3/movie/${item.source_id}?api_key=6addbdd2457d4d8d9a03e850cef564d7`
+        : `https://api.themoviedb.org/3/tv/${item.source_id}?api_key=6addbdd2457d4d8d9a03e850cef564d7`;
+
+    const response = await axios.get(url);
+    return {
+      ...item,
+      genres: response.data.genres,
+      vote_average: response.data.vote_average,
+    };
+  };
 
   return (
     <div className="watchlist-page">
@@ -56,34 +121,43 @@ export function WantToWatch() {
           <button onClick={() => setFilterType("tv")}>Series</button>
         </nav>
         <nav className="watchlist-menu cinzel-400 text-white">
-          <a href="#all">Genre</a>
+          <select
+            name="genre"
+            id="genre"
+            onChange={(e) => setFilterGenre(e.target.value)}
+          >
+            <option value="All" className="text-black">
+              All Genres
+            </option>
+            {genres.map((genre) => (
+              <option key={genre.id} value={genre.name} className="text-black">
+                {genre.name}
+              </option>
+            ))}
+          </select>
+
           <select name="rating" id="Rating">
             <option value="nothing">Rating</option>
             <option
-              // onClick={() => handleFilter(9)}
               className="text-black"
-              value="90-100"
+              value="85-100"
             >
-              90-100
+              85-100
             </option>
 
             <option
-              // onClick={() => handleFilter(8)}
               className="text-black"
-              value="80-89"
+              value="80-84"
             >
               80-89
             </option>
             <option
-              // onClick={() => handleFilter(7)}
               className="text-black"
               value="71-79"
             >
               71-79
             </option>
           </select>
-          <a href="#series">Director</a>
-          <a href="#series">Year</a>
         </nav>
       </header>
 
