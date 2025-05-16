@@ -279,6 +279,7 @@ swiper-container {
   .add-watchlist-btn{
     background-color: rgba(209, 45, 53, 1);
     border-radius: 10000px;
+    padding: 20px;
   }
 
   .poster {
