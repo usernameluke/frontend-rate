@@ -21,6 +21,12 @@ export function WantToWatch() {
     getWatchlist();
   }, []);
 
+  const filteredWatchlist = watchlist.filter((item) => {
+    const statusMatch = filterStatus === "All" || item.status === filterStatus;
+    const typeMatch = filterType === "All" || item.type === filterType;
+    return statusMatch && typeMatch;
+  })
+
   return (
     <div className="watchlist-page">
       <header className="watchlist-header">
@@ -28,18 +34,13 @@ export function WantToWatch() {
           id="watchlist"
           name="watchlist"
           className="watchlist text-1xl cinzel-500 text-white"
+          value={filterStatus}
           onChange={(e) => setFilterStatus(e.target.value)}
         >
-          <option
-            value="All"
-            className="text-1xl cinzel-500 text-black"
-          >
+          <option value="All" className="text-1xl cinzel-500 text-black">
             All
           </option>
-          <option
-            value="To Watch"
-            className="text-1xl cinzel-500 text-black"
-          >
+          <option value="To Watch" className="text-1xl cinzel-500 text-black">
             Want to Watch
           </option>
           <option value="Watching" className="text-1xl cinzel-500 text-black">
@@ -50,9 +51,9 @@ export function WantToWatch() {
           </option>
         </select>
         <nav className="watchlist-menu cinzel-400 text-white">
-          <a href="#all" onClick={() => setFilterType("All")}>All</a>
-          <a href="#movies" onClick={() => setFilterType("movie")}>Movies</a>
-          <a href="#series" onClick={() => setFilterType("tv")}>Series</a>
+          <button onClick={() => setFilterType("All")}>All</button>
+          <button onClick={() => setFilterType("movie")}>Movies</button>
+          <button onClick={() => setFilterType("tv")}>Series</button>
         </nav>
         <nav className="watchlist-menu cinzel-400 text-white">
           <a href="#all">Genre</a>
@@ -95,7 +96,7 @@ export function WantToWatch() {
           direction="vertical"
           className="watchlist-main"
         >
-          {watchlist.map((item) => {
+          {filteredWatchlist.map((item) => {
             return (
               <swiper-slide key={`watchlist-item-${item.id}`}>
                 <WatchlistItem
