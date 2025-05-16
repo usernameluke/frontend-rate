@@ -2,7 +2,6 @@ import { useState } from "react";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { IoPersonOutline } from "react-icons/io5";
 import { IoIosCloseCircleOutline } from "react-icons/io";
-import { IoColorFilterOutline } from "react-icons/io5";
 import { CiViewList } from "react-icons/ci";
 import { IoMenu } from "react-icons/io5";
 import { VscSignOut } from "react-icons/vsc";
@@ -23,7 +22,7 @@ export function Navbar() {
           <div className="nav-left">
             <a href="#" className="menu-logo">
               <img
-                src="src\images\logo.png"
+                src="/images/logo.png"
                 alt="R8+ logo"
                 className="logo-icon"
               />
@@ -55,7 +54,7 @@ export function Navbar() {
             <div className="menu-row">
               <div>
                 <img
-                  src="src\images\logo-red.png"
+                  src="/images/logo-red.png"
                   alt="R8+ logo"
                   className="red-logo"
                 />
@@ -79,7 +78,7 @@ export function Navbar() {
                 <a href="#to-watch">
                   <img
                     className="icon"
-                    src="\src\images\ToWatch.png"
+                    src="/images/ToWatch.png"
                     alt="To watch"
                   />
                   <span className="cinzel-400">Watchlist</span>
