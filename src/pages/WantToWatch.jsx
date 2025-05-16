@@ -137,8 +137,8 @@ export function WantToWatch() {
             ))}
           </select>
 
-          <select name="rating" id="Rating" className="rating-dropwdown" onChange={(e) => setFilterRating(e.target.value)}>
-            <option value="All">Rating</option>
+          <select name="rating" id="Rating" className="rating-dropwdown text-black" onChange={(e) => setFilterRating(e.target.value)}>
+            <option value="All">All Ratings</option>
             <option
               className="text-black"
               value="85-100"
