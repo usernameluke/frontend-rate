@@ -29,7 +29,7 @@ export const GenreModal = ({ specificId, type }) => {
   return (
     <>
       <button
-        className="watchlist-btn cinzel-400 text-white text-sm "
+        className="add-watchlist-btn cinzel-400 text-white text-sm "
         onClick={() => setShowGenre(!showGenre)}
       >
         {showGenre ? "Add to Watchlist" : "Add to Watchlist"}

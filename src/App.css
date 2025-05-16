@@ -276,6 +276,11 @@ swiper-container {
     margin: 10px;
   }
 
+  .add-watchlist-btn{
+    background-color: rgba(209, 45, 53, 1);
+    border-radius: 10000px;
+  }
+
   .poster {
     height: 110px;
     width: 73.86px;
