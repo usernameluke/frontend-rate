@@ -196,11 +196,11 @@ export function WantToWatch() {
             direction="vertical"
             slidesPerView={2}
             grid={{
-              rows: 3,
+              rows: 2,
               fill: "row",
             }}
             pagination={{ clickable: true }}
-            className="px-4 py-6 watchlist-grid"
+            className="px-4 py-6"
           >
             {filteredWatchlist.map((item) => (
               <SwiperSlide key={`watchlist-item-${item.id}`}>
