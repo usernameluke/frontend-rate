@@ -679,6 +679,10 @@ swiper-container {
 
   .watchlist-img {
     height: 120px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
 
   .watchlist-info {
@@ -933,7 +937,7 @@ swiper-container {
     height: 40px;
   }
 
-    .modal-container {
+  .modal-container {
     position: fixed;
     left: 0;
     top: 0;
@@ -956,7 +960,7 @@ swiper-container {
     border: solid 2px white;
   }
 
-  .modal-content{
+  .modal-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
