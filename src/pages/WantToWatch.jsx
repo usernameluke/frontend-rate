@@ -176,13 +176,11 @@ export function WantToWatch() {
           >
             {filteredWatchlist.map((item) => (
               <SwiperSlide key={`watchlist-item-${item.id}`}>
-                <div className="h-[200px]">
-                  <WatchlistItem
+                <WatchlistItem
                   specificId={item.source_id}
                   type={item.type}
                   id={item.id}
                 />
-                </div>
               </SwiperSlide>
             ))}
           </Swiper>
@@ -191,7 +189,7 @@ export function WantToWatch() {
         {/* Tablet and Desktop: 2x2 Grid */}
         <div className="hidden md:grid grid-cols-2 gap-4 px-4 py-6 max-h-[660px] overflow-y-auto">
           {filteredWatchlist.map((item) => (
-            <div key={`watchlist-item-${item.id}`}>
+            <div className="h-[200px]" key={`watchlist-item-${item.id}`}>
               <WatchlistItem
                 specificId={item.source_id}
                 type={item.type}
