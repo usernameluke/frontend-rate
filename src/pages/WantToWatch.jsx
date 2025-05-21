@@ -166,7 +166,7 @@ export function WantToWatch() {
       </header>
 
       <main className="watchlist-main">
-        {/* Mobile only: Vertical Swiper */}
+        /*For mobile vertical swiper*/
         <div className="block md:hidden">
           <Swiper
             slidesPerView={3}
@@ -186,8 +186,8 @@ export function WantToWatch() {
           </Swiper>
         </div>
 
-        {/* Tablet and Desktop: 2x2 Grid */}
-        <div className="hidden md:grid grid-cols-2 gap-4 px-4 py-6 max-h-[660px] overflow-y-auto">
+        /*For tablet/computer 2x2grid*/
+        <div className="hidden md:grid grid-cols-2 gap-4 px-4 py-6 h-[100vh] overflow-y-auto">
           {filteredWatchlist.map((item) => (
             <div className="h-[200px]" key={`watchlist-item-${item.id}`}>
               <WatchlistItem
