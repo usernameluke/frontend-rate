@@ -176,11 +176,13 @@ export function WantToWatch() {
           >
             {filteredWatchlist.map((item) => (
               <SwiperSlide key={`watchlist-item-${item.id}`}>
-                <WatchlistItem
+                <div className="h-[200px]">
+                  <WatchlistItem
                   specificId={item.source_id}
                   type={item.type}
                   id={item.id}
                 />
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>
