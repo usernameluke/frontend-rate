@@ -5,13 +5,14 @@ import Movie from "./pages/Movie";
 import Show from "./pages/Show";
 import { Browse } from "./pages/Browse";
 import { WatchlistItem } from "./components/WatchlistItem";
+import "./app.css";
 
 function App() {
   return (
     <div className="app">
       <Navbar />
       <header
-        id="#"
+        id="welcome-header"
         className="header"
       >
         <h1 className="text-white cinzel-500 text-5xl text-center welcome-title">

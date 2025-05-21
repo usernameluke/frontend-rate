@@ -82,11 +82,11 @@ export function WatchlistItem({ specificId, type, id }) {
         </div>
 
         <div className="watchlist-info">
-          <p className="watchlist-info cinzel-500 text-white text-sm underline">
+          <p className="watchlist-title cinzel-500 text-white text-sm underline">
             {title}
           </p>
 
-          <p className="watchlist-info cinzel-500 text-white text-sm">
+          <p className="cinzel-500 text-white text-sm">
             {Math.round(watchlistItem.vote_average * 10)}/100
           </p>
 

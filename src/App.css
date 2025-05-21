@@ -37,7 +37,7 @@ swiper-container {
 
 /*mobile*/
 
-@media (min-width: 320px) and (max-width: 768px) {
+@media (min-width: 320px) and (max-width: 639px) {
   .app {
     display: grid;
     grid-template-rows: auto 1fr auto;
@@ -541,7 +541,7 @@ swiper-container {
 }
 /* 
 //tablet
-@media (min-width: 769px) and (max-width:1023px) {
+@media (min-width: 640px) and (max-width:1023px) {
   
 }
 */
@@ -560,7 +560,6 @@ swiper-container {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    width: 100vw;
     height: 100vh;
   }
 
@@ -698,6 +697,19 @@ swiper-container {
     flex-direction: column;
     justify-content: center;
     align-items: start;
+    width: 200px;
+  }
+
+  .watchlist-title{
+    width: 225px;
+  }
+
+  .watchlist-status{
+    width: 100px;
+  }
+
+  .watchlist-buttons{
+    margin-left: 30px;
   }
 
   .poster {
