@@ -189,17 +189,18 @@ export function WantToWatch() {
         </div>
 
         /*Tablet & desktop 2x3 swiper grid*/
-        <div className="hidden md:block watchlist-grid">
+        <div className="hidden md:block">
           <Swiper
             modules={[Grid]}
             spaceBetween={10}
+            direction="vertical"
             slidesPerView={2}
             grid={{
               rows: 3,
               fill: "row",
             }}
             pagination={{ clickable: true }}
-            className="px-4 py-6"
+            className="px-4 py-6 watchlist-grid"
           >
             {filteredWatchlist.map((item) => (
               <SwiperSlide key={`watchlist-item-${item.id}`}>
