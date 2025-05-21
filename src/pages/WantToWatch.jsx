@@ -192,7 +192,7 @@ export function WantToWatch() {
         <div className="hidden md:block">
           <Swiper
             modules={[Grid]}
-            spaceBetween={10}
+            spaceBetween={5}
             direction="vertical"
             slidesPerView={2}
             grid={{
