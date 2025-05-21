@@ -187,7 +187,7 @@ export function WantToWatch() {
         </div>
 
         {/* Tablet and Desktop: 2x2 Grid */}
-        <div className="hidden md:grid grid-cols-2 gap-4 px-4 py-6 max-h-[80vh] overflow-y-auto">
+        <div className="hidden md:grid grid-cols-2 gap-4 px-4 py-6 max-h-[100vh] overflow-y-auto">
           {filteredWatchlist.map((item) => (
             <div key={`watchlist-item-${item.id}`}>
               <WatchlistItem
