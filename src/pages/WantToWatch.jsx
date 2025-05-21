@@ -167,7 +167,7 @@ export function WantToWatch() {
 
       <main className="watchlist-main">
         <Swiper
-          slidesPerView={4}
+          slidesPerView={2}
           spaceBetween={10}
           direction="vertical"
           className="watchlist-main"
