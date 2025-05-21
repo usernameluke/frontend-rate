@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { WatchlistItem } from "../components/WatchlistItem";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Grid } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/grid";
 
 export function WantToWatch() {
   const [watchlist, setWatchlist] = useState([]);
@@ -168,7 +166,7 @@ export function WantToWatch() {
       </header>
 
       <main className="watchlist-main">
-        {/* Mobile only: Vertical Swiper */}
+        {/* Mobile only Vertical Swiper */}
         <div className="block md:hidden">
           <Swiper
             slidesPerView={3}
@@ -188,7 +186,7 @@ export function WantToWatch() {
           </Swiper>
         </div>
 
-        {/* Tablet and Desktop: 2x2 Grid */}
+        {/* Tablet and Desktop 2x2 Grid */}
         <div className="hidden md:grid grid-cols-2 gap-4 px-4 py-6 max-h-[80vh] overflow-y-auto">
           {filteredWatchlist.map((item) => (
             <div key={`watchlist-item-${item.id}`}>
