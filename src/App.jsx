@@ -5,7 +5,6 @@ import Movie from "./pages/Movie";
 import Show from "./pages/Show";
 import { Browse } from "./pages/Browse";
 import { WatchlistItem } from "./components/WatchlistItem";
-import darkBackground from "../src/images/darkBackground.png";
 
 function App() {
   return (
@@ -14,13 +13,6 @@ function App() {
       <header
         id="#"
         className="header"
-        style={{
-          backgroundImage: `url(${darkBackground})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          height: "100vh",
-        }}
       >
         <h1 className="text-white cinzel-500 text-5xl text-center welcome-title">
           Welcome to R8+ <hr />
