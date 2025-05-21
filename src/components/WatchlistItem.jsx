@@ -77,7 +77,7 @@ export function WatchlistItem({ specificId, type, id }) {
           <img
             src={`https://image.tmdb.org/t/p/w500${watchlistItem.poster_path}`}
             alt={watchlistItem.alt}
-            className="poster"
+            className="watchlist-poster"
           />
         </div>
 
