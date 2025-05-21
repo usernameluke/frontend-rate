@@ -129,6 +129,7 @@ export function BrowseFilm() {
           className="browse-row z-0"
           slides-per-view="4"
           space-between="10"
+          breakpoints
         >
           {filterMovies.map((item) => (
             <swiper-slide key={item.id} className="z-0">
