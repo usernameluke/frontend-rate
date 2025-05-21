@@ -189,7 +189,7 @@ export function WantToWatch() {
         </div>
 
         /*Tablet & desktop 2x3 swiper grid*/
-        <div className="hidden md:block">
+        <div className="hidden md:block watchlist-grid">
           <Swiper
             modules={[Grid]}
             spaceBetween={10}
