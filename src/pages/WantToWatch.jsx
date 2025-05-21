@@ -168,7 +168,7 @@ export function WantToWatch() {
       </header>
 
       <main className="watchlist-main">
-        
+        {/* Mobile only: Vertical Swiper */}
         <div className="block md:hidden">
           <Swiper
             slidesPerView={3}
@@ -188,30 +188,17 @@ export function WantToWatch() {
           </Swiper>
         </div>
 
-
-        <div className="hidden md:block">
-          <Swiper
-            modules={[Grid]}
-            spaceBetween={5}
-            direction="vertical"
-            slidesPerView={2}
-            grid={{
-              rows: 2,
-              fill: "row",
-            }}
-            pagination={{ clickable: true }}
-            className="px-4 py-6"
-          >
-            {filteredWatchlist.map((item) => (
-              <SwiperSlide key={`watchlist-item-${item.id}`}>
-                <WatchlistItem
-                  specificId={item.source_id}
-                  type={item.type}
-                  id={item.id}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+        {/* Tablet and Desktop: 2x2 Grid */}
+        <div className="hidden md:grid grid-cols-2 gap-4 px-4 py-6 max-h-[80vh] overflow-y-auto">
+          {filteredWatchlist.map((item) => (
+            <div key={`watchlist-item-${item.id}`}>
+              <WatchlistItem
+                specificId={item.source_id}
+                type={item.type}
+                id={item.id}
+              />
+            </div>
+          ))}
         </div>
       </main>
 
