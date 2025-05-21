@@ -700,9 +700,9 @@ swiper-container {
     align-items: start;
   }
 
-  .watchlist-grid{
+  /* .watchlist-grid{
     height: 100vh;
-  }
+  } */
 
   .poster {
     height: 180px;

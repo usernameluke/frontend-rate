@@ -168,7 +168,7 @@ export function WantToWatch() {
       </header>
 
       <main className="watchlist-main">
-        /*Mobile vertical swiper*/
+        
         <div className="block md:hidden">
           <Swiper
             slidesPerView={3}
@@ -188,7 +188,7 @@ export function WantToWatch() {
           </Swiper>
         </div>
 
-        /*Tablet & desktop 2x3 swiper grid*/
+
         <div className="hidden md:block">
           <Swiper
             modules={[Grid]}
