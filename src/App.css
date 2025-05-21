@@ -37,7 +37,7 @@ swiper-container {
 
 /*mobile*/
 
-@media (min-width: 320px) and (max-width: 767px) {
+@media (min-width: 320px) and (max-width: 639px) {
   .app {
     display: grid;
     grid-template-rows: auto 1fr auto;
@@ -287,7 +287,7 @@ swiper-container {
     outline: none;
   }
 
-  .rating-dropdown{
+  .rating-dropdown {
     outline: none;
   }
 
@@ -513,6 +513,12 @@ swiper-container {
     align-items: center;
   }
 
+  .info-trailer {
+    height: 200px;
+    border-radius: 5%;
+    margin: 1rem;
+  }
+
   .info-poster {
     height: 200px;
     border-radius: 5%;
@@ -535,7 +541,7 @@ swiper-container {
 }
 /* 
 //tablet
-@media (min-width: 768px) and (max-width:1023px) {
+@media (min-width: 640px) and (max-width:1023px) {
   
 }
 */
@@ -550,7 +556,7 @@ swiper-container {
   }
 
   .header {
-    background-image: url(C:\Users\Karin\Documents\IronHack\ModuleTwo\WeekFive\R8+\rate\src\images\darkBackgroundTabletComp.png);
+    background-image: url(..src/images/darkBackgroundTabletComp.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -679,14 +685,14 @@ swiper-container {
   }
 
   .poster {
-    /* height: 180px; */
+    height: 180px;
     margin: 10px;
     border: 1px solid white;
     border-radius: 5px;
     box-shadow: 0px 0px 7px #666;
   }
 
-  .browse {
+  .browsing {
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -846,13 +852,14 @@ swiper-container {
     flex-direction: column;
     justify-content: space-evenly;
     height: 100vh;
-    /* width: 100vw; */
+    width: 100vw;
   }
 
   .info {
     border: 1px solid white;
     border-radius: 10000px;
     padding: 5px;
+    margin: 1rem;
   }
 
   .info-page-top {
@@ -868,14 +875,14 @@ swiper-container {
   }
 
   .info-description {
-    margin: 0 10px;
+    margin: 0 40px;
+    font-size: medium;
   }
 
   .info-flex {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
   }
 
   .info-row {
@@ -884,7 +891,7 @@ swiper-container {
     flex-direction: column;
     align-items: center;
     /* width: 100vw; */
-    margin-top: 10px;
+    margin: 10px;
   }
 
   .info-btn {
@@ -902,10 +909,23 @@ swiper-container {
     align-items: center;
   }
 
-  .info-poster {
-    height: 200px;
+  .info-trailer {
+    height: 450px;
+    width: 800px;
     border-radius: 5%;
     margin: 1rem;
+  }
+
+  .info-poster {
+    height: 400px;
+    border-radius: 5%;
+    margin: 1rem;
+  }
+
+  .add-watchlist-btn {
+    background-color: rgba(209, 45, 53, 1);
+    border-radius: 10000px;
+    padding: 10px;
   }
 
   .info-icon {

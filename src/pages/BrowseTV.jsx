@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { IoIosArrowDropleft } from "react-icons/io";
-import { IoIosArrowDropright } from "react-icons/io";
+import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 export function BrowseTV() {
   const [shows, setShows] = useState([]);
   const [filterShows, setFilterShows] = useState([]);
   const [minRating, setMinRating] = useState(0);
   const [showPage, setShowPage] = useState(1);
-  // const [defaultGenre, setDefaultGenre]=useState("Action & Adventure");
 
   useEffect(() => {
     fetchShow(showPage);
@@ -58,9 +59,7 @@ export function BrowseTV() {
             </option>
           </select>
           <select className="genre cinzel-400 text-sm text-white text-center">
-            <option className="genre text-black">
-              Genre
-            </option>
+            <option className="genre text-black">Genre</option>
             <option className="genre text-black" value={"Action & Adventure"}>
               Action & Adventure
             </option>
@@ -112,19 +111,29 @@ export function BrowseTV() {
           </select>
         </div>
 
-        <swiper-container slides-per-view="4" space-between="10" z-0>
+        {/* ✅ Swiper Component */}
+        <Swiper
+          className="browse-row z-0"
+          spaceBetween={10}
+          breakpoints={{
+            320: { slidesPerView: 4 },
+            640: { slidesPerView: 8 },
+            1024: { slidesPerView: 10 },
+          }}
+        >
           {filterShows.map((item) => (
-            <swiper-slide key={item.id}>
+            <SwiperSlide key={item.id} className="z-0">
               <Link to={`/show/${item.id}`}>
                 <img
                   src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-                  alt={item.alt}
+                  alt={item.name}
                   className="poster"
                 />
               </Link>
-            </swiper-slide>
+            </SwiperSlide>
           ))}
-        </swiper-container>
+        </Swiper>
+
         <div className="pagination-controls">
           <button
             className="browse-btn"

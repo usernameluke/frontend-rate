@@ -56,13 +56,12 @@ const Movie = () => {
           <div className="info-flex">
             {trailerKey ? (
               <iframe
-                width="100%"
+                // width="100%"
                 height="281"
                 src={`https://www.youtube.com/embed/${trailerKey}`}
                 title="YouTube video player"
                 allow="autoplay; encrypted-media"
-                allowFullScreen
-                className="info-poster"
+                className="info-trailer"
               ></iframe>
             ) : (
               <img
@@ -71,17 +70,19 @@ const Movie = () => {
                 className="info-poster"
               />
             )}
-            <h3 className="text-xl text-center font-bold text-red">
-              {movie.original_title} <hr />
-            </h3>
-            <div className="info-row">
-              <p className="info text-white text-xs">{movie.release_date}</p>
-              <p className="info text-white text-xs">
-                {movie.genres?.map((genre) => genre.name).join(", ")}
-              </p>
-              <p className="info text-white text-xs">
-                {Math.round(movie.vote_average * 10)}/100
-              </p>
+            <div>
+              <h3 className="text-xl text-center font-bold text-red">
+                {movie.original_title} <hr />
+              </h3>
+              <div className="info-row">
+                <p className="info text-white text-xs">{movie.release_date}</p>
+                <p className="info text-white text-xs">
+                  {movie.genres?.map((genre) => genre.name).join(", ")}
+                </p>
+                <p className="info text-white text-xs">
+                  {Math.round(movie.vote_average * 10)}/100
+                </p>
+              </div>
             </div>
           </div>
         </div>

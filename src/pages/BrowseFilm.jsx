@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { IoIosArrowDropleft } from "react-icons/io";
-import { IoIosArrowDropright } from "react-icons/io";
+import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 export function BrowseFilm() {
   const [movies, setMovies] = useState([]);
   const [filterMovies, setFilterMovies] = useState([]);
-
   const [minRating, setMinRating] = useState(0);
-
   const [moviePage, setMoviePage] = useState(1);
 
   useEffect(() => {
@@ -25,7 +25,6 @@ export function BrowseFilm() {
   };
 
   const handleFilterFilm = (rate) => {
-    console.log("Filtering by rating:", rate);
     if (rate === minRating) {
       setMinRating(0);
       setFilterMovies(movies);
@@ -33,10 +32,6 @@ export function BrowseFilm() {
       setMinRating(rate);
       const filtered = movies.filter((movie) => movie.vote_average >= rate);
       setFilterMovies(filtered);
-      console.log(
-        "Movie votes:",
-        movies.map((m) => m.vote_average)
-      );
     }
   };
 
@@ -65,85 +60,31 @@ export function BrowseFilm() {
           </select>
           <select className="genre cinzel-400 text-sm text-white text-center">
             <option className="genre text-black">Genre</option>
-            <option className="genre text-black" value={"Action"}>
-              Action
-            </option>
-            <option className="genre text-black" value={"Adventure"}>
-              Adventure
-            </option>
-            <option className="genre text-black" value={"Animation"}>
-              Animation
-            </option>
-            <option className="genre text-black" value={"Comedy"}>
-              Comedy
-            </option>
-            <option className="genre text-black" value={"Crime"}>
-              Crime
-            </option>
-            <option className="genre text-black" value={"Documentary"}>
-              Documentary
-            </option>
-            <option className="genre text-black" value={"Drama"}>
-              Drama
-            </option>
-            <option className="genre text-black" value={"Family"}>
-              Family
-            </option>
-            <option className="genre text-black" value={"Fantasy"}>
-              Fantasy
-            </option>
-            <option className="genre text-black" value={"History"}>
-              History
-            </option>
-            <option className="genre text-black" value={"Horror"}>
-              Horror
-            </option>
-            <option className="genre text-black" value={"Music"}>
-              Music
-            </option>
-            <option className="genre text-black" value={"Mystery"}>
-              Mystery
-            </option>
-            <option className="genre text-black" value={"Romance"}>
-              Romance
-            </option>
-            <option className="genre text-black" value={"Science Fiction"}>
-              Science Fiction
-            </option>
-            <option className="genre text-black" value={"TV Movie"}>
-              TV Movie
-            </option>
-            <option className="genre text-black" value={"Thriller"}>
-              Thriller
-            </option>
-            <option className="genre text-black" value={"War"}>
-              War
-            </option>
-            <option className="genre text-black" value={"Western"}>
-              Western
-            </option>
           </select>
         </div>
 
-        <swiper-container
+        <Swiper
           className="browse-row z-0"
-          slides-per-view="4"
-          space-between="10"
-          breakpoints
+          spaceBetween={10}
+          breakpoints={{
+            320: { slidesPerView: 4 },
+            640: { slidesPerView: 8 },
+            1024: { slidesPerView: 10 },
+          }}
         >
           {filterMovies.map((item) => (
-            <swiper-slide key={item.id} className="z-0">
+            <SwiperSlide key={item.id} className="z-0">
               <Link to={`/movie/${item.id}`}>
-              
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-                    alt={item.alt}
-                    className="poster"
-                  />
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                  alt={item.title}
+                  className="poster"
+                />
               </Link>
-            </swiper-slide>
+            </SwiperSlide>
           ))}
-        </swiper-container>
+        </Swiper>
+
         <div className="pagination-controls">
           <button
             className="browse-btn"

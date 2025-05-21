@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { WatchlistItem } from "../components/WatchlistItem";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 export function WantToWatch() {
   const [watchlist, setWatchlist] = useState([]);
@@ -131,7 +133,11 @@ export function WantToWatch() {
               All Genres
             </option>
             {genres.map((genre) => (
-              <option key={genre.id} value={genre.name} className="text-black text-xs">
+              <option
+                key={genre.id}
+                value={genre.name}
+                className="text-black text-xs"
+              >
                 {genre.name}
               </option>
             ))}
@@ -160,27 +166,24 @@ export function WantToWatch() {
       </header>
 
       <main className="watchlist-main">
-        <swiper-container
-          slides-per-view="4"
-          space-between="10"
-          scrollbar-clickable="true"
-          mousewheel-invert="true"
+        <Swiper
+          slidesPerView={4}
+          spaceBetween={10}
           direction="vertical"
           className="watchlist-main"
         >
-          {filteredWatchlist.map((item) => {
-            return (
-              <swiper-slide key={`watchlist-item-${item.id}`}>
-                <WatchlistItem
-                  specificId={item.source_id}
-                  type={item.type}
-                  id={item.id}
-                />
-              </swiper-slide>
-            );
-          })}
-        </swiper-container>
+          {filteredWatchlist.map((item) => (
+            <SwiperSlide key={`watchlist-item-${item.id}`}>
+              <WatchlistItem
+                specificId={item.source_id}
+                type={item.type}
+                id={item.id}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </main>
+
       <footer className="watchlist-footer">
         <p className="cinzel-500 text-white"></p>
       </footer>

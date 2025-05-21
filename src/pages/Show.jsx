@@ -58,14 +58,12 @@ const Show = () => {
           <div className="info-flex">
             {trailerKey ? (
               <iframe
-                width="100%"
                 height="281"
                 src={`https://www.youtube.com/embed/${trailerKey}`}
                 title="YouTube video player"
                 frameBorder="0"
                 allow="autoplay; encrypted-media"
-                allowFullScreen
-                className="info-poster"
+                className="info-trailer"
               ></iframe>
             ) : (
               <img
@@ -74,18 +72,19 @@ const Show = () => {
                 className="info-poster"
               />
             )}
-
-            <h3 className="text-xl text-center font-bold text-red">
-              {show.original_name} <hr />
-            </h3>
-            <div className="info-row">
-              <p className="info text-white text-xs">{show.first_air_date}</p>
-              <p className="info text-white text-xs">
-                {show.genres?.map((genre) => genre.name).join(", ")}
-              </p>
-              <p className="info text-white text-xs">
-                {Math.round(show.vote_average * 10)}/100
-              </p>
+            <div>
+              <h3 className="text-xl text-center font-bold text-red">
+                {show.original_name} <hr />
+              </h3>
+              <div className="info-row">
+                <p className="info text-white text-xs">{show.first_air_date}</p>
+                <p className="info text-white text-xs">
+                  {show.genres?.map((genre) => genre.name).join(", ")}
+                </p>
+                <p className="info text-white text-xs">
+                  {Math.round(show.vote_average * 10)}/100
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -95,7 +94,7 @@ const Show = () => {
         </div>
 
         <div className="info-btn-container">
-          <GenreModal specificId={specificId} type="tv"/>
+          <GenreModal specificId={specificId} type="tv" />
         </div>
       </div>
       ;
