@@ -31,9 +31,9 @@ export function Navbar() {
           <div className="nav-right">
             <div className="search" onClick={() => setShowSearch(!showSearch)}>
               {showSearch ? (
-                <IoIosCloseCircleOutline className="nav-icon icon" />
+                <IoIosCloseCircleOutline className="nav-icon" />
               ) : (
-                <FaMagnifyingGlass className="nav-icon icon" />
+                <FaMagnifyingGlass className="nav-icon" />
               )}
             </div>
             {showSearch && (
@@ -84,26 +84,6 @@ export function Navbar() {
                   <span className="cinzel-400">Watchlist</span>
                 </a>
               </li>
-              {/* <li className="navbar-item">
-                <a href="#watching">
-                  <img
-                    className="icon"
-                    src="\src\images\Watching.png"
-                    alt="Watching"
-                  />
-                  <span className="cinzel-400">Watching</span>
-                </a>
-              </li>
-              <li className="navbar-item">
-                <a href="#watched">
-                  <img
-                    className="icon"
-                    src="\src\images\Watched.png"
-                    alt="Watched"
-                  />
-                  <span className="cinzel-400">Watched</span>
-                </a>
-              </li> */}
               <li className="navbar-item">
                 <a href="#custom-list">
                   <CiViewList className="icon" />
@@ -123,45 +103,9 @@ export function Navbar() {
                 </a>
               </li>
             </div>
-            {/* 
-            <VscSignOut />
-            <li className="navbar-item">
-              <Link to="/cast">
-              <IoPersonOutline />
-                <FaPersonHalfDress className="icon" />
-                <span className="cinzel-400">Cast</span>
-              </Link>
-            </li>
-            <li className="navbar-item">
-              <Link to="/director">
-                <GiDirectorChair className="icon" />
-                <span className="cinzel-400">Director</span>
-              </Link>
-            </li>
-            <li className="navbar-item">
-              <Link to="/year">
-                <RiNewsLine className="icon" />
-                <span className="cinzel-400">Year</span>
-              </Link>
-            </li>
-            <li className="navbar-item">
-              <Link to="/contact">
-                <FaPhoneAlt className="icon" />
-                <span className="cinzel-400">Contact</span>
-              </Link>
-            </li> */}
           </ul>
         </nav>
       </div>
-      {/* 
-    <div className="navbar-secondrow">
-      <div className="choice-bar">
-        <button className="choice">Films</button>
-        <GiFilmProjector className="icon"/>
-        <GenreModal />
-        <SliderModal />
-      </div>
-    </div>     */}
     </>
   );
 }
