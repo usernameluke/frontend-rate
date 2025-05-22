@@ -5,7 +5,6 @@ import Movie from "./pages/Movie";
 import Show from "./pages/Show";
 import { Browse } from "./pages/Browse";
 import { WatchlistItem } from "./components/WatchlistItem";
-import "./app.css";
 
 function App() {
   return (
