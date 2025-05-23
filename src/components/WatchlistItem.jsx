@@ -91,7 +91,7 @@ export function WatchlistItem({ specificId, type, id }) {
           </p>
 
           <select
-            className="watchlist-status cinzel-400 text-white watchlist-info text-sm"
+            className="watchlist-status cinzel-400 text-white text-sm"
             name="status"
             id="status"
             onChange={handleStatusChange}

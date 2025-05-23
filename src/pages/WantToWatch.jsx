@@ -6,18 +6,47 @@ import "swiper/css";
 
 export function WantToWatch() {
   const [watchlist, setWatchlist] = useState([]);
-
+  const [genres, setGenres] = useState([]);
   const [filterStatus, setFilterStatus] = useState("All");
-
   const [filterType, setFilterType] = useState("All");
-
   const [filterGenre, setFilterGenre] = useState("All");
-
   const [filterRating, setFilterRating] = useState("All");
 
-  const API_URL = `${import.meta.env.VITE_API_URL}`;
+  const API_URL = import.meta.env.VITE_API_URL;
 
-  const [genres, setGenres] = useState([]);
+  useEffect(() => {
+    const fetchAllData = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/watchlist`);
+        const rawItems = response.data;
+
+        const enrichedItems = await Promise.all(
+          rawItems.map((item) => fetchTMDBDetails(item))
+        );
+
+        setWatchlist(enrichedItems);
+        fetchGenres();
+      } catch (error) {
+        console.error("Error loading watchlist or TMDB data", error);
+      }
+    };
+
+    fetchAllData();
+  }, []);
+
+  const fetchTMDBDetails = async (item) => {
+    const url =
+      item.type === "movie"
+        ? `https://api.themoviedb.org/3/movie/${item.source_id}?api_key=6addbdd2457d4d8d9a03e850cef564d7`
+        : `https://api.themoviedb.org/3/tv/${item.source_id}?api_key=6addbdd2457d4d8d9a03e850cef564d7`;
+
+    const response = await axios.get(url);
+    return {
+      ...item,
+      genres: response.data.genres || [],
+      vote_average: response.data.vote_average || 0,
+    };
+  };
 
   const fetchGenres = async () => {
     try {
@@ -43,26 +72,6 @@ export function WantToWatch() {
     }
   };
 
-  const getWatchlist = async () => {
-    try {
-      const response = await axios.get(`${API_URL}/watchlist`);
-      const rawItems = response.data;
-
-      const enrichedItems = await Promise.all(
-        rawItems.map((item) => fetchTMDBDetails(item))
-      );
-
-      setWatchlist(enrichedItems);
-    } catch (error) {
-      console.error("Error loading watchlist or TMDB data", error);
-    }
-  };
-
-  useEffect(() => {
-    getWatchlist();
-    fetchGenres();
-  }, []);
-
   const filteredWatchlist = watchlist.filter((item) => {
     const statusMatch = filterStatus === "All" || item.status === filterStatus;
     const typeMatch = filterType === "All" || item.type === filterType;
@@ -75,24 +84,19 @@ export function WantToWatch() {
       (filterRating === "71-79" && rating >= 7.1 && rating < 8);
 
     const genreMatch =
-      filterGenre === "All" || item.genres.some((g) => g.name === filterGenre);
+      filterGenre === "All" ||
+      (item.genres && item.genres.some((g) => g.name === filterGenre));
 
     return statusMatch && typeMatch && ratingMatch && genreMatch;
   });
 
-  const fetchTMDBDetails = async (item) => {
-    const url =
-      item.type === "movie"
-        ? `https://api.themoviedb.org/3/movie/${item.source_id}?api_key=6addbdd2457d4d8d9a03e850cef564d7`
-        : `https://api.themoviedb.org/3/tv/${item.source_id}?api_key=6addbdd2457d4d8d9a03e850cef564d7`;
-
-    const response = await axios.get(url);
-    return {
-      ...item,
-      genres: response.data.genres,
-      vote_average: response.data.vote_average,
-    };
-  };
+  if (!watchlist.length) {
+    return (
+      <div className="cinzel-500 text-white text-center mt-20">
+        <p className="text-lg">Loading your Watchlist...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="watchlist-page">
@@ -104,24 +108,26 @@ export function WantToWatch() {
           value={filterStatus}
           onChange={(e) => setFilterStatus(e.target.value)}
         >
-          <option value="All" className="text-1xl cinzel-500 text-black">
+          <option value="All" className="text-black">
             All
           </option>
-          <option value="To Watch" className="text-1xl cinzel-500 text-black">
+          <option value="To Watch" className="text-black">
             Want to Watch
           </option>
-          <option value="Watching" className="text-1xl cinzel-500 text-black">
+          <option value="Watching" className="text-black">
             Watching
           </option>
-          <option value="Watched" className="text-1xl cinzel-500 text-black">
+          <option value="Watched" className="text-black">
             Watched
           </option>
         </select>
+
         <nav className="watchlist-menu cinzel-400 text-white">
           <button onClick={() => setFilterType("All")}>All</button>
           <button onClick={() => setFilterType("movie")}>Movies</button>
           <button onClick={() => setFilterType("tv")}>Series</button>
         </nav>
+
         <nav className="watchlist-menu cinzel-400 text-white">
           <select
             name="genre"
@@ -129,14 +135,14 @@ export function WantToWatch() {
             className="genre-dropdown text-xs"
             onChange={(e) => setFilterGenre(e.target.value)}
           >
-            <option value="All" className="text-black text-xs">
+            <option value="All" className="text-black">
               All Genres
             </option>
             {genres.map((genre) => (
               <option
                 key={genre.id}
                 value={genre.name}
-                className="text-black text-xs"
+                className="text-black"
               >
                 {genre.name}
               </option>
@@ -149,16 +155,16 @@ export function WantToWatch() {
             className="rating-dropwdown text-xs"
             onChange={(e) => setFilterRating(e.target.value)}
           >
-            <option className="text-black text-xs" value="All">
+            <option value="All" className="text-black">
               All Ratings
             </option>
-            <option className="text-black text-xs" value="85-100">
+            <option value="85-100" className="text-black">
               85-100
             </option>
-            <option className="text-black text-xs" value="80-84">
+            <option value="80-84" className="text-black">
               80-84
             </option>
-            <option className="text-black text-xs" value="71-79">
+            <option value="71-79" className="text-black">
               71-79
             </option>
           </select>
@@ -167,23 +173,28 @@ export function WantToWatch() {
 
       <main className="watchlist-main">
         {/* Mobile vertical swiper */}
-        <div className="block md:hidden">
-          <Swiper
-            slidesPerView={3}
-            spaceBetween={10}
-            direction="vertical"
-            className="watchlist-main"
-          >
-            {filteredWatchlist.map((item) => (
-              <SwiperSlide key={`watchlist-item-${item.id}`}>
-                <WatchlistItem
-                  specificId={item.source_id}
-                  type={item.type}
-                  id={item.id}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+        <div className="block md:hidden h-[435px]">
+          {filteredWatchlist.length > 0 && (
+            <Swiper
+              slidesPerView={4}
+              spaceBetween={10}
+              direction="vertical"
+              className="h-full"
+            >
+              {filteredWatchlist.map((item) => (
+                <SwiperSlide 
+                  key={`watchlist-item-${item.id}`}
+                  className="!h-[100px]"
+                >
+                  <WatchlistItem
+                    specificId={item.source_id}
+                    type={item.type}
+                    id={item.id}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          )}
         </div>
 
         {/* Tablet and Desktop 2x2 Grid */}
@@ -201,7 +212,7 @@ export function WantToWatch() {
       </main>
 
       <footer className="watchlist-footer">
-        <p className="cinzel-500 text-white"></p>
+        <p className="cinzel-500 text-white text-center mt-4">M&L © 2025</p>
       </footer>
     </div>
   );

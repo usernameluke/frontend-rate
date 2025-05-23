@@ -38,7 +38,7 @@ export function BrowseFilm() {
   return (
     <div className="browse">
       <div className="top-rated-films">
-        <h3 className="cinzel-500 text-xl row-title">Top-Rated Films</h3>
+        <h3 className="cinzel-500 text-xl row-title browse-title">Top-Rated Films</h3>
         <div className="browse-choices">
           <select
             className="rating cinzel-400 text-sm row-title"
